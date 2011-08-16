@@ -1,0 +1,101 @@
+Notes About the production Process: 
+Started with this tutorial: http://ruby.railstutorial.org/ruby-on-rails-tutorial-book
+git- Tutorial has some git, its a great thing to have and learn
+
+Has an app up and running in about 3-4 days but still wasn't enough to really grasp rails had to try something myself
+App isn't my idea
+
+Many-To-Many Relationships
+So one thing I found particularly challenging and this might just be a ruby on rails noob speaking but many-to-many relationship were a bit troubling to grasp. 
+Generating erd.pdf to show relationships
+So I have groups that contain many users. And a user belongs to many groups.  So that means I need 3 models, group, group_member, and user.
+
+Inside the group model I has to use the has_many and has_many through relationships like this: 
+  has_many :group_members
+  has_many :users, :through => :group_members
+  
+Inside the group_member model I to create a connection to user and group
+  belongs_to :user
+  belongs_to :group
+
+And Inside group I had to create a connection 
+  has_many :group_members
+  has_many :groups, :through => :group_members
+  
+Thus I had a many to Many relationship. I played with this connection by iterating all the groups that belongs to a user on the user signin welcome screen. So when you click on a group you'll be brought to the list of the group's members 
+
+Obviously nothing here is styled etc so just bear with me. and clicking on a user will bring to the user information screen. 
+
+So that's some progress. 
+If we look further into the code to generate the links to the groups... 
+Pretty simple (once you figure out the syntax (I did not figure out the syntax without a little help from Mr. Google))
+  <ul>
+  <% current_user.groups.each do |group| %>
+  <li><%= link_to group.name, group %></a> </li>
+  <% end %>
+</ul>
+
+current_user is a global variable that basically save the id of the current logged in user but we can bring the same concerpt to the rails console and see the results of this information (basically a place to play and test out code)
+
+  -Just find any (existing) user in the database and assign them to the variable u
+    current_user = User.find(1)
+      RESULT:
+       => #<User id: 1, name: "Paige", email: "paigepon@gmail.com", created_at: "2011-07-05 22:49:25", updated_at: "2011-07-05 22:49:25", encrypted_password: "534ad6723a8c64bbda9828294680552dd0a27e79d62b64640ca...", salt: "71103daaf9018cfca38378f58a1fdd50d354b2421117dc077e1..."> 
+      
+  -Find all the groups associated with that user (ruby on rails does all the heavy lifting here, nice change from php and mysql)
+    u.groups
+      RESULT:  => [#<Group id: 1, user_id: nil, name: "The Gang", created_at: "2011-07-05 22:49:26", updated_at: "2011-07-05 22:49:26">, #<Group id: 4, user_id: nil, name: "---\n- ad\n", created_at: "2011-07-05 22:49:26", updated_at: "2011-07-05 22:49:26">, #<Group id: 5, user_id: nil, name: "---\n- dolore\n", created_at: "2011-07-05 22:49:26", updated_at: "2011-07-05 22:49:26">, #<Group id: 25, user_id: nil, name: "---\n- accusantium\n", created_at: "2011-07-05 22:49:26", updated_at: "2011-07-05 22:49:26">, #<Group id: 32, user_id: nil, name: "---\n- id\n", created_at: "2011-07-05 22:49:26", updated_at: "2011-07-05 22:49:26">, #<Group id: 51, user_id: nil, name: "---\n- aut\n", created_at: "2011-07-05 22:49:26", updated_at: "2011-07-05 22:49:26">, #<Group id: 97, user_id: nil, name: "---\n- ratione\n", created_at: "2011-07-05 22:49:27", updated_at: "2011-07-05 22:49:27">, #<Group id: 100, user_id: nil, name: "---\n- quia\n", created_at: "2011-07-05 22:49:27", updated_at: "2011-07-05 22:49:27">, #<Group id: 19, user_id: nil, name: "---\n- vel\n", created_at: "2011-07-05 22:49:26", updated_at: "2011-07-05 22:49:26">, #<Group id: 2, user_id: nil, name: "---\n- voluptate\n", created_at: "2011-07-0522:49:26", updated_at: "2011-07-05 22:49:26">] 
+  
+  -That's a bit of a confusing mess :( but if you look at it closely (and semi-understand rails) You can see that it looks just like the code about it, its just an array (a little bit more complicated then that but basically just an array). If we just want to pull out the name of the groups that Paige belongs to we just need to iterate over the array. Like So
+    -uby-1.9.2-p180 :040 > u.groups.each do |group|
+    ruby-1.9.2-p180 :041 >     print group.name
+    ruby-1.9.2-p180 :042?>   end
+    RESULT: 
+    The Gang---
+    - ad
+    ---
+    - dolore
+    ---
+    - accusantium
+    ---
+    - id
+    ---
+    - aut
+    ---
+    - ratione
+    ---
+    - quia
+    ---
+    - vel
+    ---
+    - voluptate
+    
+    -*Ignore the crazy letters its just the setup of my test cases but looks pretty similar to the print out right :) 
+    
+ -and just for the lols you can take a look at what the server calls for in the rails server terminal :
+    Started GET "/groups/1" for 127.0.0.1 at 2011-07-14 16:39:46 -0400
+      Processing by GroupsController#show as HTML
+      Parameters: {"id"=>"1"}
+      Group Load (0.3ms)  SELECT "groups".* FROM "groups" WHERE "groups"."id" = 1 LIMIT 1
+      User Load (0.7ms)  SELECT "users".* FROM "users" INNER JOIN "group_members" ON "users".id = "group_members".user_id WHERE (("group_members".group_id = 1))
+      User Load (0.1ms)  SELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
+    
+    -Working in PHP and MySQL I had to write all the myself... Not anymore... Nice huh?
+    
+    
+One-To-Many Relationships
+  Maybe I'm just a dumb (which is highly likely) but starting off iterating over Many-To-Many relationships confused me a bit when it came to One-To-Many Relationships. I got a bit stuck on how to iterate over it but I was lucky to finally figure it out basically its the same as above minus the extra terminology
+    - nominations= Nomination.where(:user_id => current_user)
+      nominations.each do |nomination|
+          nomination.place.name
+      end
+      
+    -Using the above code to generate a radio button for a form
+    -See the server doing the dirty work again: Nomination Load (0.2ms)  SELECT "nominations".* FROM "nominations" WHERE "nominations"."user_id" = 1
+      -Its a bit easier to see this code happening here -  nominations= Nomination.where(:user_id => current_user)
+        -The fact that its so obvious makes me thing that that's probably bad Ruby code but I'm not sure how to do it any differently... Any Ruby experts want to weigh in here?
+        
+  
+    
+      
+    

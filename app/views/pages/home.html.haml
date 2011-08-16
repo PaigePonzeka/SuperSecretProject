@@ -1,0 +1,8 @@
+%h1 Welcome To the Disluncho Application
+
+%h2
+  -if signed_in?
+    Welcome!
+  -else
+    = link_to "Sign in", signin_path
+   

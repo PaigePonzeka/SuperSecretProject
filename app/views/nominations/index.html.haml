@@ -1,0 +1,19 @@
+%h1 Listing nominations
+%table
+  %tr
+    %th Round
+    %th Place
+    %th User
+    %th
+    %th
+    %th
+  - @nominations.each do |nomination|
+    %tr
+      %td= nomination.round_id
+      %td= nomination.place_id
+      %td= nomination.user_id
+      %td= link_to 'Show', nomination
+      %td= link_to 'Edit', edit_nomination_path(nomination)
+      %td= link_to 'Destroy', nomination, :confirm => 'Are you sure?', :method => :delete
+%br/
+= link_to 'New Nomination', new_nomination_path

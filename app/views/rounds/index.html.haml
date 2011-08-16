@@ -1,0 +1,17 @@
+%h1 Listing rounds
+%table
+  %tr
+    %th Group
+    %th Name
+    %th
+    %th
+    %th
+  - @rounds.each do |round|
+    %tr
+      %td= round.group_id
+      %td= round.name
+      %td= link_to 'Show', round
+      %td= link_to 'Edit', edit_round_path(round)
+      %td= link_to 'Destroy', round, :confirm => 'Are you sure?', :method => :delete
+%br/
+= link_to 'New Round', new_round_path

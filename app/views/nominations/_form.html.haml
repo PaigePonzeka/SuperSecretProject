@@ -1,0 +1,45 @@
+= form_for(@nomination) do |f|
+  - if @nomination.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@nomination.errors.count, "error")} prohibited this nomination from being saved:"
+      %ul
+      - @nomination.errors.full_messages.each do |msg|
+        %li= msg
+
+  .field(style = "display:none;")
+    = f.label :user_id
+    %br
+    = f.text_field :user_id, :value => "#{current_user.id}", :readonly => "true" 
+    
+    %br
+    = f.label :round_id
+    %br         
+    - rounds = Round.where(is_active:true & group_id = current_group) 
+    - current_round=0
+    - rounds.each do |round|
+      - current_round = round
+    = f.text_field :round_id, :value => "#{current_round.id}", :readonly => "true"
+  
+  .field
+    %h3 
+      Pick a Place or 
+      = link_to "Add New Place", :action => "new", :controller => "places"
+    %form
+      - #get the nominations associated with that user order them by the place_id 
+      - nominations= Nomination.where(:user_id => current_user).order("place_id ASC")
+      - @current_place_id= 0 
+      - nominations.each do |nomination|
+      - #If the current_place_id is the same as the previous place id then its a duplicate...don't print it Save the Place Id and store it to check later editions to make sure we aren't creating duplicates'
+        -if @current_place_id != nomination.place.id
+          - @current_place_id = nomination.place.id
+          %li
+            = f.radio_button :place_id, "#{nomination.place.id}"
+            = f.label :place_id, "#{nomination.place.name}", :for => "nomination_place_id_#{nomination.place.id}"
+  -# Check to see if you are being redirected from the add new place form (if new_place is nill, if you are add the new place) %>
+  - if !params[:new_place].nil?
+    %li
+      = f.radio_button :place_id, "#{place(new_place).id}"   
+      = f.label :place_id, "#{place_name(new_place)}", :for => "nomination_place_id_#{place(new_place).id}"
+  .actions
+    = f.submit
+  

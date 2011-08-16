@@ -1,0 +1,11 @@
+%h4
+  = link_to current_group_name, current_group 
+  >
+  - rounds = Round.where(is_active:true & group_id = current_group)
+  - rounds.each do |round|
+    = round.name
+    - session[:current_round] = round.id
+  > Nominate
+                      
+= render 'form'
+= link_to 'Back', nominations_path

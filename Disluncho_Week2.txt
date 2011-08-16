@@ -1,0 +1,43 @@
+<h2> Why you should be using HAML in your Ruby on Rails Apps </h2>
+
+<p> Ever since I started working in Ruby on Rails Web Applications I already had the dev environment set up for me and I always worked in HAML and SASS so I never understood the pain of working with ERB. So When I first started this learning app I started with the default ERB's and GOD wasn't it painful.</p>
+<p> Imagine working with this: (And having to type <% <-- THESE --> %> Everytime you have to write a SINGLE LINE of code):<br />
+Inside _form.html.erb <br /><p class="ruby"> 
+<textarea><div class="field">
+  <h4> <%=previous_group%></h4><br />
+  <h3>Pick a Place or <%= link_to "Add New Place", :action => "new", :controller => "places", :previous_group => previous_group %><br /></h3><br />
+  <form><br />
+    <% nominations= Nomination.where(:user_id => current_user).order("place_id ASC")%> <br />
+    <% @current_place_id= 0 %><br />
+    <% nominations.each do |nomination|%><br />
+      <%if @current_place_id != nomination.place.id%><br />
+        <% @current_place_id = nomination.place.id %><br />
+        <li><br />
+       
+        <%= f.radio_button :place_id, "#{nomination.place.id}" %> <br />  
+        <%= f.label :place_id, "#{nomination.place.name}", :for => "nomination_place_id_#{nomination.place.id}" %><br />
+      </li><br />
+      <%end%><br />
+      
+  <% end %> <br /></p><br />
+  </textarea>
+  </p>
+
+<p>And then compare it to working with this: <br />
+  Inside _form.html.haml<br /> <p class="ruby">
+  .field<br />
+    %h4=previous_group<br />
+    %h3 <br />
+      Pick a Place or <br />
+      = link_to "Add New Place", :action => "new", :controller => "places", :previous_group => previous_group<br />
+    %form<br />
+      - nominations= Nomination.where(:user_id => current_user).order("place_id ASC")<br />
+      - @current_place_id= 0 <br />
+      - nominations.each do |nomination|<br />
+        -if @current_place_id != nomination.place.id<br />
+          - @current_place_id = nomination.place.id<br />
+          %li<br />
+            = f.radio_button :place_id, "#{nomination.place.id}"<br />
+            = f.label :place_id, "#{nomination.place.name}", :for => "nomination_place_id_#{nomination.place.id}" <br /></p><br /></p>
+            
+<p>Look at that! You may not notice the difference right away but when you start coding alot and you get in your grove its going to get really frustrating to write even 4 lines of code. It seems so tideous. But <a href="http://haml-lang.com/"> HAML</a> is nice, its really great. I never knew about HAML until about 6 months ago and its really not hard to learn. Its just a condensed version of HTML. The key with HAML (And its CSS version <a href="http://sass-lang.com/"> SASS </a>) is indentation. You don't have to open and closes divs and other elements, you just create the div move to the next line and indent...boom you're done. Even if you aren't working in Ruby on Rails its still a great thing to use. You can throw together a website in half the time. Check out: <a href="http://staticmatic.rubyforge.org/"> StaticMatic </a></p>

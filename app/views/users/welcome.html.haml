@@ -1,0 +1,9 @@
+%h1
+  Welcome
+  \#{current_user.name}!
+%h3 Clicking a Group will start a new vote *currently just take to the groups information screen
+/ For Each group that has a member with this id... show
+%ul
+  - current_user.groups.each do |group|
+    %li
+      = link_to group.name, group

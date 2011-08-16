@@ -1,0 +1,22 @@
+%p#notice= notice
+%p
+  %b Name:
+  = @place.name
+%p
+  %b Street:
+  = @place.street
+%p
+  %b City:
+  = @place.city
+%p
+  %b Zipcode:
+  = @place.zipcode
+%p
+  %b Phone:
+  = @place.phone
+%p
+  %b Yelp:
+  = @place.yelp
+= link_to 'Edit', edit_place_path(@place)
+|
+\#{link_to 'Back', places_path}

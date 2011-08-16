@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+%html
+%head
+  %title
+    Disluncho 
+  %script{:type => "text/javascript",
+          :src  => "http://code.jquery.com/jquery-latest.js"}
+  = stylesheet_link_tag :all
+  = stylesheet_link_tag 'blueprint/screen', :media => 'screen'
+  = stylesheet_link_tag 'blueprint/print', :media => 'print'
+  /[if lt IE 8]                                                                
+    = stylesheet_link_tag 'blueprint/ie'
+  = javascript_include_tag :defaults
+  = csrf_meta_tag
+%body
+  = render :partial => "shared/header"
+  - flash.each do |key, value|
+    .flash
+      = key
+      = value
+    
+= yield

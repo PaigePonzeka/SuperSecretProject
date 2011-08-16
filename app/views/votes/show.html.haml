@@ -1,0 +1,19 @@
+%h1 New vote
+= render 'form'
+= link_to 'Back', votes_path
+%p#notice= notice
+%p
+  %b User:
+  = @vote.user_id
+%p
+  %b Round:
+  = @vote.round_id
+%p
+  %b Place:
+  = @vote.place_id
+%p
+  %b Count:
+  = @vote.count
+= link_to 'Edit', edit_vote_path(@vote)
+|
+\#{link_to 'Back', votes_path}

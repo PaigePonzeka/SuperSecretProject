@@ -1,0 +1,7 @@
+Notes About the production Process: 
+Started with this tutorial: http://ruby.railstutorial.org/ruby-on-rails-tutorial-book
+git- Tutorial has some git, its a great thing to have and learn
+
+
+Has an app up and running in about 3-4 days but still wasn't enough to really grasp rails had to try something myself
+App isn't my idea
