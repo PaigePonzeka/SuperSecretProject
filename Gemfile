@@ -8,6 +8,7 @@ gem 'rails', '3.0.6'
 gem 'sqlite3'
 gem 'gravatar_image_tag', '1.0.0.pre2'
 gem 'haml'
+gem "dynamic_form"
 
 group :development do
   gem "rails-erd" #http://rails-erd.rubyforge.org/install.html
