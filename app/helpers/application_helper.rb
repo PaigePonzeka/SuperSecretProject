@@ -1,5 +1,5 @@
 module ApplicationHelper
-  
+
 def group_name(id)
   Group.find(id).name
 end
@@ -18,21 +18,22 @@ end
 
 def new_place
   params[:new_place]
-end  
+end
 
 def current_group_name
    Group.find(current_group).name
-end 
+end
 
 def current_group
   session[:previous_group]
-end  
-     
-def current_round 
+end
+
+def current_round
   session[:current_round]
 end
 
-def current_round_name 
+def current_round_name
   Round.find(current_round).name
 end
+
 end
