@@ -1,13 +1,13 @@
 class PlacesController < ApplicationController
  #Creating a instance variable of the current voting group and saving it on load
  before_filter :set_voting_group
- 
+
  @voting_group
- 
+
  def set_voting_group
     @voting_group = 1
  end
- 
+
   # GET /places
   # GET /places.xml
   def index
@@ -50,11 +50,11 @@ class PlacesController < ApplicationController
   # POST /places.xml
   def create
     @place = Place.new(params[:place])
-    
+
     respond_to do |format|
       if @place.save
         flash[:notice] = "A New Place has been created"
-        format.html { redirect_to(:controller => "nominations", :action => "new", :previous_group => @voting_group, :new_place => @place, :notice => 'Place was successfully created.') }
+        format.html { redirect_to(:controller => "nominations", :action => "new",  :new_place => @place, :notice => 'Place was successfully created.') }
         #format.xml  { render :xml => @place, :status => :created, :location => @place }
       else
         flash[:error] = "There Has been an issue"
