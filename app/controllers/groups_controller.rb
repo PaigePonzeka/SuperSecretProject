@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-    
+
   # GET /groups
   # GET /groups.xml
   def index
@@ -13,7 +13,7 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.xml
   def show
-    @group = Group.find(params[:id]) 
+    @group = Group.find(params[:id])
     session[:previous_group] = params[:id]
 
     respond_to do |format|
@@ -25,7 +25,7 @@ class GroupsController < ApplicationController
   # GET /groups/new
   # GET /groups/new.xml
   def new
-    @group = Group.new
+  @group = Group.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,9 +42,13 @@ class GroupsController < ApplicationController
   # POST /groups.xml
   def create
     @group = Group.new(params[:group])
+    # add the currently signed in user to the group
+
 
     respond_to do |format|
       if @group.save
+        current_member = GroupMember.new(:user_id => current_user, :group_id => @group.id)
+        current_member.save
         format.html { redirect_to(@group, :notice => 'Group was successfully created.') }
         format.xml  { render :xml => @group, :status => :created, :location => @group }
       else
