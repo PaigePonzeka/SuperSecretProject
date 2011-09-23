@@ -3,7 +3,12 @@
   \#{current_user.name}!
 %h3 Clicking a Group will start a new vote *currently just take to the groups information screen
 / For Each group that has a member with this id... show
-%ul
+- if current_user.groups.empty? #the user has no groups
+  %h5.message
+    "You have no groups :("
+    = link_to 'Start a New One!', new_group_path
+- else
+  %ul
   - current_user.groups.each do |group|
     %li
       = link_to group.name, group
