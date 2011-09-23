@@ -1,7 +1,7 @@
 class NominationsController < ApplicationController
-       
-  
-  
+
+
+
   # GET /nominations
   # GET /nominations.xml
   def index
@@ -46,15 +46,19 @@ class NominationsController < ApplicationController
     @nomination = Nomination.new(params[:nomination])
 
     respond_to do |format|
-      if @nomination.save                                                            
-        format.html { redirect_to(:action => "new", :controller => "votes", :notice => 'Nomination was successfully created.') }
-        format.xml  { render :xml => @nomination, :status => :created, :location => @nomination }
+      if @nomination.save
+        flash[:notice] = "Nomination has been created"
+        format.html { redirect_to :controller => 'votes', :action => 'new' }
+        #format.xml  { render :xml => @place, :status => :created, :location => @place }
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @nomination.errors, :status => :unprocessable_entity }
+        flash[:error] = "There Has been an issue"
+        #format.html { render :action => "new" }
+        #format.xml  { render :xml => @place.errors, :status => :unprocessable_entity }
       end
     end
   end
+
+
 
   # PUT /nominations/1
   # PUT /nominations/1.xml
