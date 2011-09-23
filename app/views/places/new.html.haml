@@ -1,6 +1,6 @@
 %h1 New place
 %h4
-  = link_to group_name(previous_group), group(previous_group)
-  > #{link_to 'Nominate', :controller => "nominations", :action => "new", :previous_group => previous_group} > Add A Place
+  = link_to group_name(current_group), group(current_group)
+  > #{link_to 'Nominate', new_nomination_path} > Add A Place
 = render 'form'
 = link_to 'Back', places_path
