@@ -22,13 +22,13 @@
   %h2
     -# determine the language based on whether or not there is an active vote
     - if Round.where(is_active:true & group_id = @group.id).empty?
-      = link_to "Create Vote!", :action => "new", :controller => "nominations", :previous_group => @group
+      = link_to "Create Vote!", new_nomination_path
       -# Create a new Round in the database
       - Round.create!(:group_id => @group.id, :name => "Lunch_test", :is_active => 1)
 
     - else
 
-      = link_to "Enter The Vote!", :action => "new", :controller => "nominations", :previous_group => @group
+      = link_to "Enter The Vote!", new_nomination_path
 
 
 = link_to 'Back', groups_path
