@@ -10,18 +10,18 @@
   .field(style="display:none")
     = f.text_field :user_id, :value => current_user.id
   .field(style="display:none")
-    = f.text_field :round_id, :value => current_round 
-    
+    = f.text_field :round_id, :value => current_round
+
   %table
-    - # For each Place generate a text box and a count 
-    - @current_place_id = 0 
-    - nominations = get_nominations  
-    - nominations.each do |nomination| 
+    - # For each Place generate a text box and a count
+    - @current_place_id = 0
+    - nominations = get_nominations
+    - nominations.each do |nomination|
       -if @current_place_id != nomination.place.id
         %tr
           %td
             = f.label :place_id, nomination.place.name
-            - @current_place_id = nomination.place.id 
+            - @current_place_id = nomination.place.id
           %td
             = f.text_field :count, :value => 0, :size => 2
           %td
@@ -29,37 +29,15 @@
               %li.add
                 Add
               %li.remove
-                Remove   
-          :javascript
-            ( function($) {
-                // we can now rely on $ within the safety of our “bodyguard” function
-                $(document).ready( function() { 
-                   // currently targeting 1 of each class ... how to change that?
-                   // There are 5 buttons, it does it 5 times
-                   $(".add").click( function(){
+                Remove
 
-                    add_button = $(this).parent().closest("tr").find("#vote_count"); 
-                    $(this).parent().closest("tr").css("color", "#f00");
-                    box_value_as_int = parseInt(add_button.val());
-                    add_button.val(box_value_as_int+=1); 
-                    return false;
-                   }); 
-                   
-                   $('.remove').click( function(){
-                     alert("Remove 1 from the parent");
-                   }); 
-                 
-                 
-                 } );
-            } ) ( jQuery );
-            
-          .field(style="display:none") 
+          .field(style="display:none")
             %br/
-            = f.text_field :place_id, :value => nomination.place.id      
-    
-  
+            = f.text_field :place_id, :value => nomination.place.id
 
-  .field(style="display:none") 
+
+
+  .field(style="display:none")
     = f.label :count
     %br/
     = f.text_field :count
