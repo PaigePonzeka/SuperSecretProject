@@ -5,13 +5,7 @@
       Disluncho
     %script{:type => "text/javascript",
             :src  => "http://code.jquery.com/jquery-latest.js"}
-    = stylesheet_link_tag :all
-    = stylesheet_link_tag 'blueprint/screen', :media => 'screen'
-    = stylesheet_link_tag 'blueprint/print', :media => 'print'
     = stylesheet_link_tag    "application"
-
-    /[if lt IE 8]
-      = stylesheet_link_tag 'blueprint/ie'
     = javascript_include_tag "application"
     = csrf_meta_tag
 

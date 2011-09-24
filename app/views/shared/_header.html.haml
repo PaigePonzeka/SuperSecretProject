@@ -1,9 +1,6 @@
 %header
-
   %nav.round
-
     %ul
-
       %li
         - if signed_in?
           = link_to "Home", '/welcome'
@@ -14,16 +11,12 @@
         = link_to "Help", "#"
 
       -if signed_in?
-
         %li
           = link_to "Profile", current_user
 
-      -if signed_in?
-
-        %li
+      %li
+        -if signed_in?
           = link_to signout_path, :method => :delete do
             ="Signout(#{current_user.name})"
-
-      -else
-        %li
+        -else
           = link_to "Sign in", signin_path
