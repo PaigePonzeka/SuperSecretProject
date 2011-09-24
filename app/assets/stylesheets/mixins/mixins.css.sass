@@ -1,0 +1,220 @@
+//----------------------------------------------------
+//  Default Colors
+//----------------------------------------------------
+
+
+//----------------------------------------------------
+//  Clearing
+//----------------------------------------------------
+
+=clear
+  clear: both
+
+=clearfix
+  overflow: hidden
+
+=clearfix_old
+  *display: inline-block
+  &:after
+    content: " "
+    display: block
+    height: 0
+    clear: both
+    visibility: hidden
+
+//----------------------------------------------------
+//  Positioning
+//----------------------------------------------------
+
+=absolute
+  position: absolute
+
+=relative
+  position: relative
+
+=fixed
+  position: fixed
+
+=left
+  float: left
+  display: inline
+
+=right
+  float: right
+  display: inline
+
+//----------------------------------------------------
+//  Display Options
+//----------------------------------------------------
+
+=hide
+  display: none
+
+=block
+  display: block
+
+=inline
+  display: inline
+
+=inline-block
+  display: inline-block
+
+//----------------------------------------------------
+//  Links
+//----------------------------------------------------
+
+=hover-link
+  text-decoration: none
+
+  &:hover
+    text-decoration: underline
+
+=unstyled-link
+  color: inherit
+  text-decoration: inherit
+  cursor: inherit
+
+  &:active, &:focus
+    outline: none
+
+=link-colors($normal, $hover: false, $active: false, $visited: false, $focus: false)
+  color: $normal
+
+  @if $visited
+    &:visited
+      color: $visited
+  @if $focus
+    &:focus
+      color: $focus
+  @if $hover
+    &:hover
+      color: $hover
+  @if $active
+    &:active
+      color: $active
+
+//----------------------------------------------------
+//  Text Formatting
+//----------------------------------------------------
+
+=text_center
+  text-align: center
+
+=text_left
+  text-align: left
+
+=text_right
+  text-align: right
+
+=text_justified
+  text-align: justified
+
+=bold
+  font-weight: bold
+
+=italic
+  font-style: italic
+
+=normal
+  font-weight: normal
+  font-style: normal
+
+=uppercase
+  text-transform: uppercase
+
+//----------------------------------------------------
+//  Buttons and Image Replacement
+//----------------------------------------------------
+
+=image($width: false, $height: false, $url: false)
+  +block
+  text-indent: -9000px
+  overflow: hidden
+
+  @if $width
+    width: $width
+
+  @if $height
+    height: $height
+
+  @if $url
+    background: url($url) no-repeat left top
+
+=button($width: false, $height: false, $url: false)
+  +image($width, $height, $url)
+
+  &:active
+    background-position: left bottom
+
+=input_button($width: false, $height: false, $url: false)
+  +button($width, $height, $url)
+  border: 0
+  padding: 0
+  cursor: pointer
+  line-height: 300px
+  overflow: hidden
+  font-size: 0
+
+=opacity($value)
+  -khtml-opacity: $value
+  -moz-opacity: $value
+  opacity: $value
+  filter: alpha(opacity=#{$value * 100})
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$value*100})"
+
+//----------------------------------------------------
+//  Tabbed Navigation
+//----------------------------------------------------
+
+=horizontal_nav
+  ul
+    +clearfix
+
+    li
+      float: left
+
+      a
+        display: block
+
+//----------------------------------------------------
+//  CSS 3
+//----------------------------------------------------
+
+=opacity($value)
+  opacity: $value
+  filter: alpha(opacity=#{$value * 100})
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$value*100})"
+
+=border-radius($radius, $radius_tr: false, $radius_br: false, $radius_bl: false, $radius_tl: false)
+  @if $radius_tr
+    border-top-left-radius: $radius
+    border-top-right-radius: $radius_tr
+    border-bottom-right-radius: $radius_br
+    border-bottom-left-radius: $radius_bl
+    -moz-border-radius-topleft: $radius
+    -moz-border-radius-topright: $radius_tr
+    -moz-border-radius-bottomright: $radius_br
+    -moz-border-radius-bottomleft: $radius_bl
+    -webkit-border-top-left-radius: $radius
+    -webkit-border-top-right-radius: $radius_tr
+    -webkit-border-bottom-right-radius: $radius_br
+    -webkit-border-bottom-left-radius: $radius_bl
+  @else
+    border-radius: $radius
+    -moz-border-radius: $radius
+    -webkit-border-radius: $radius
+
+=box-shadow($x_offset, $y_offset, $radius, $color)
+  -moz-box-shadow: $x_offset $y_offset $radius $color
+  -webkit-box-shadow: $x_offset $y_offset $radius $color
+  box-shadow: $x_offset $y_offset $radius $color
+
+=inner-box-shadow($x_offset, $y_offset, $radius, $color)
+  -moz-box-shadow: inset $x_offset $y_offset $radius $color
+  -webkit-box-shadow: inset $x_offset $y_offset $radius $color
+  box-shadow: inner $x_offset $y_offset $radius $color
+
+=rotate($rotate)
+  -webkit-transform: rotate($rotate)
+  -moz-transform: rotate($rotate)
+
