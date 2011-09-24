@@ -5,5 +5,5 @@
 // the compiled file.
 //
 //= require jquery
-//= require_tree ./default
-//= require_tree ./scripts
+//= require_tree ./global
+//= require_tree ./front
