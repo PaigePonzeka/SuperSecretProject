@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.6'
+gem 'rails', '3.1'
+gem "mysql2", "0.3.2"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -8,11 +9,22 @@ gem 'rails', '3.0.6'
 gem 'sqlite3'
 gem 'gravatar_image_tag', '1.0.0.pre2'
 gem 'haml'
+gem 'json'
+gem 'sass'
+gem 'coffee-script'
+gem 'uglifier'
 gem "dynamic_form"
+gem 'jquery-rails'
 
 group :development do
   gem "rails-erd" #http://rails-erd.rubyforge.org/install.html
   gem 'faker', '0.3.1'
+end
+
+# Rails 3.1 - Heroku
+group :production do
+  gem 'therubyracer-heroku', '0.8.1.pre3'
+  gem 'pg'
 end
 
 group :test do
