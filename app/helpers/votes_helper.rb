@@ -30,4 +30,6 @@ module VotesHelper
     total_votes
   end
 
+
+
 end

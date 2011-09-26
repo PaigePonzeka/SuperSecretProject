@@ -1,25 +1,11 @@
-%h1 Viewing Voting Results\
+%h1 Viewing Voting Results
 -# tally up all the votes from the current round of the current group
 -# list the places from highest votes to lowest votes
-= tally_votes
-
--#
-  %h1 New vote
-  = render 'form'
-  = link_to 'Back', votes_path
-  %p#notice= notice
-  %p
-    %b User:
-    = @vote.user_id
-  %p
-    %b Round:
-    = @vote.round_id
-  %p
-    %b Place:
-    = @vote.place_id
-  %p
-    %b Tally:
-    = @vote.tally
-  = link_to 'Edit', edit_vote_path(@vote)
-  |
-  \#{link_to 'Back', votes_path}
+- vote_totals = tally_votes
+- vote_list_class = "vote_winner"
+%ul
+  - vote_totals.each do |vote_total|
+    %li{:class => vote_list_class}
+      = place_name(vote_total[0])
+      = vote_total[1]
+    - vote_list_class = ""
