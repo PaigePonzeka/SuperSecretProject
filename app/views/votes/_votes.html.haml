@@ -1,0 +1,29 @@
+= form_for(@vote) do |f|
+  - if @vote.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@vote.errors.count, "error")
+        prohibited this vote from being saved:
+      %ul
+        - @vote.errors.full_messages.each do |msg|
+          %li= msg
+  .field(style="display:none")
+    = f.text_field :user_id, :value => current_user.id
+  .field(style="display:none")
+    = f.text_field :round_id, :value => current_round
+
+  %table
+    %tr
+      %td
+        = f.label :place_id, place_id
+        - @current_place_id = place_id
+      %td
+        = f.text_field :tally, :value => 0, :size => 2
+      %td
+        %ul
+          %li.add_vote
+            Add
+          %li.remove_vote
+            Remove
+
+      = f.hidden_field :place_id, :value => place_id

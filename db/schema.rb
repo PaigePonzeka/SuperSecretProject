@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(:version => 20110716143100) do
     t.integer  "user_id"
     t.integer  "round_id"
     t.integer  "place_id"
-    t.integer  "count"
+    t.integer  "tally"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

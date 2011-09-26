@@ -15,5 +15,11 @@
     = f.label :name
     %br/
     = f.text_field :name
+  .field
+    = f.fields_for :votes do |v|
+      = " here"
+      %p
+        Vote:
+        = v.text_field :tally
   .actions
     = f.submit

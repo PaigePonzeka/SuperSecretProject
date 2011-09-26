@@ -1,12 +1,12 @@
 %h3
-  = link_to current_group_name, "/groups/#{current_group}" 
+  = link_to current_group_name, "/groups/#{current_group}"
   >
   = current_round_name
-  > 
-  = link_to 'Nominate', :action => "new", :controller => "nominations"  
-  > Vote   
+  >
+  = link_to 'Nominate', :action => "new", :controller => "nominations"
+  > Vote
 
-%h2 Add or Remove Points From Each of the Nominated Places 
+%h2 Add or Remove Points From Each of the Nominated Places
 
-= render 'form'
+= #render 'form'
 = link_to 'Back', votes_path
