@@ -31,15 +31,10 @@
               %li.remove_vote
                 Remove
 
-          .field(style="display:none")
-            %br/
-            = f.text_field :place_id, :value => nomination.place.id
+          = f.hidden_field :place_id, :value => nomination.place.id
 
 
 
-  .field(style="display:none")
-    = f.label :count
-    %br/
-    = f.text_field :count
+
   .actions
     = f.submit "Submit Vote"
