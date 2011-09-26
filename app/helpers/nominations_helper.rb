@@ -3,7 +3,7 @@ module NominationsHelper
 # returns an array of previously nominated places
 def previousNominations
   # TODO remove duplicates and return
- nominations= Nomination.where(:user_id => current_user).order("place_id ASC")
+ nominations= Nomination.where(:user_id => current_user).order("place_id ASC").select("DISTINCT(place_id)")
 
 end
 def addPlace
