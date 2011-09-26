@@ -1,6 +1,7 @@
 %h1 Viewing Voting Results\
 -# tally up all the votes from the current round of the current group
 -# list the places from highest votes to lowest votes
+= tally_votes
 
 -#
   %h1 New vote
@@ -17,8 +18,8 @@
     %b Place:
     = @vote.place_id
   %p
-    %b Count:
-    = @vote.count
+    %b Tally:
+    = @vote.tally
   = link_to 'Edit', edit_vote_path(@vote)
   |
   \#{link_to 'Back', votes_path}
