@@ -48,7 +48,7 @@ class NominationsController < ApplicationController
     respond_to do |format|
       if @nomination.save
         flash[:notice] = "Nomination has been created"
-        format.html { redirect_to :controller => 'votes', :action => 'new' }
+        format.html { redirect_to :controller => 'rounds', :action => 'new' }
         #format.xml  { render :xml => @place, :status => :created, :location => @place }
       else
         flash[:error] = "There Has been an issue"
