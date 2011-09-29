@@ -25,7 +25,6 @@ class RoundsController < ApplicationController
   # GET /rounds/new.xml
   def new
     @round = Round.new
-    3.times {@round.votes.build}
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @round }

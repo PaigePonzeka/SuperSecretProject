@@ -16,10 +16,15 @@
     %br/
     = f.text_field :name
   .field
-    = f.fields_for :votes do |v|
-      = " here"
-      %p
-        Vote:
-        = v.text_field :tally
+    %ul
+    - nominations = get_nominations
+    - nominations.each do |nomination|
+      = fields_for "round[vote_attributes][]", nomination do |v|
+        %li
+          = place_name(nomination.place.id)
+          = v.text_field :place_id, :value => nomination.place.id
+          = nomination
+          = #v.text_field :tally
+
   .actions
     = f.submit

@@ -4,9 +4,11 @@ class Round < ActiveRecord::Base
   has_many :nominations
   has_many :votes
 
+  attr_accessible :vote_attributes
+
   def vote_attributes=(vote_attributes)
     vote_attributes.each do |attributes|
-      vote.build(attributes)
+      votes.build(attributes)
     end
   end
 end
