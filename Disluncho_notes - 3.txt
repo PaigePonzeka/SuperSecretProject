@@ -1,0 +1,4 @@
+Model - Should contain all the heavy lifting, read like a dictionary should contain all the information about how it interacts
+Controller - Think of it as collections How the user interacts with the data
+View -
+Helper - Are there to help the view, it is generally bad practice to put too much code into the Helper (if you ever created and iphone app would have to rewrite some code) Minimal code should be in the helpers

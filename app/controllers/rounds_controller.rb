@@ -25,6 +25,10 @@ class RoundsController < ApplicationController
   # GET /rounds/new.xml
   def new
     @round = Round.new
+    @round.nominations.each do |nomination|
+      @round.votes.build(:place_id => nomination.place_id)
+    end
+
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @round }

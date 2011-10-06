@@ -2,13 +2,8 @@ class Round < ActiveRecord::Base
   has_many :groups
   has_many :places
   has_many :nominations
-  has_many :votes
+  has_many :votes, :dependent => :destroy
 
-  attr_accessible :vote_attributes
+  accepts_nested_attributes_for :votes
 
-  def vote_attributes=(vote_attributes)
-    vote_attributes.each do |attributes|
-      votes.build(attributes)
-    end
-  end
 end
