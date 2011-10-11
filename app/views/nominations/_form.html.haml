@@ -23,7 +23,7 @@
       = if addPlace
         %li
           = f.radio_button :place_id, "#{addPlace}"
-          = f.label :place_id, "#{addPlaceName}", :for => "nomination_place_id_#{addPlace}"
+          = f.label :place_id, "#{addPlace.name}", :for => "nomination_place_id_#{addPlace}"
   .actions
     = f.submit
 

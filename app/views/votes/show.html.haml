@@ -6,6 +6,6 @@
 %ul
   - vote_totals.each do |vote_total|
     %li{:class => vote_list_class}
-      = place_name(vote_total[0])
+      = vote_total[0].name
       = vote_total[1]
     - vote_list_class = ""

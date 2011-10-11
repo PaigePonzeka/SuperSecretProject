@@ -22,7 +22,7 @@ class NominationsController < ApplicationController
       format.html # show.html.erb
       format.xml  { render :xml => @nomination }
     end
-    
+
   end
 
   # GET /nominations/new
@@ -88,4 +88,6 @@ class NominationsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+
 end

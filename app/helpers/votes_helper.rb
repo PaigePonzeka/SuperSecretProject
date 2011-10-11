@@ -1,7 +1,5 @@
 module VotesHelper
 
-
-
   # tallys all the votes for a given place
   def tally_votes
     place_list = Array.new()
@@ -9,7 +7,7 @@ module VotesHelper
     # for each specific nomination get the total votes and push it to the array
     nominations.each do |nomination|
       place_votes = get_votes(nomination.place_id)
-      place_list.push([nomination.place_id, place_votes ])
+      place_list.push([nomination.place, place_votes ])
     end
     place_list
 

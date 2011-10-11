@@ -8,10 +8,10 @@ class SessionsController < ApplicationController
         render 'new'
       else
         sign_in user
-        redirect_to welcome_path 
+        redirect_to welcome_path
       end
     end
-  
+
   def destroy
     sign_out
     redirect_to root_path
