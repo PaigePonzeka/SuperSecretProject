@@ -25,6 +25,7 @@ class RoundsController < ApplicationController
   # GET /rounds/new.xml
   def new
     @round = Round.new
+    # for each existing nomination for the current round build a new vote
     @round.nominations.each do |nomination|
       @round.votes.build(:place_id => nomination.place_id)
     end

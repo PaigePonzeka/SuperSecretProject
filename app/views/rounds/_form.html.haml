@@ -17,12 +17,16 @@
     = f.text_field :name
   .field
   %h2 Votes
-  = :votes
+  - count = 0
+  = @round.nominations.inspect
   = f.fields_for :votes do |v|
     %p
-      = v.text_field :tally
+      = @round.nominations[count].place.name
+      = count
       = v.text_field :place_id
+      = v.text_field :tally
       = v.text_field :round_id
+      - count = count + 1
 
 
   .actions
