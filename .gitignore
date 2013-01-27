@@ -2,3 +2,9 @@
 db/*.sqlite3
 log/*.log
 tmp/
+.DS_Store
+data/export/*.csv
+tmp/*
+*.rbc
+*.sassc
+.sass-cache
