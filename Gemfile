@@ -1,34 +1,39 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1'
+gem 'rails', '3.2'
 gem 'mysql2', :git => 'git://github.com/brianmario/mysql2.git'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
-gem 'gravatar_image_tag', '1.0.0.pre2'
+#gem 'sqlite3'
+gem 'gravatar_image_tag'
 gem 'haml'
 gem 'json'
 gem 'sass'
+gem 'compass'
 gem 'coffee-script'
 gem 'uglifier'
 gem "dynamic_form"
 gem 'jquery-rails'
+gem 'sass-rails' # if running rails 3.1 or greater
+gem 'compass-rails'
+gem 'bootstrap-sass-rails'
+gem 'bootstrap-sass'
 
 group :development do
   gem "rails-erd" #http://rails-erd.rubyforge.org/install.html
-  gem 'faker', '0.3.1'
+  gem 'faker'
 end
 
 # Rails 3.1 - Heroku
 group :production do
-  gem 'therubyracer-heroku', '0.8.1.pre3'
+  gem 'therubyracer-heroku'
   gem 'pg'
 end
 
 group :test do
-  gem 'factory_girl_rails', '1.0'
+  gem 'factory_girl_rails'
 end
 # Use unicorn as the web server
 # gem 'unicorn'
