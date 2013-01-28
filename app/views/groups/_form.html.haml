@@ -13,5 +13,27 @@
     = f.label :name
     %br
     = f.text_field :name
+
+  %h5
+    Members
+  %ul
+
+    - @group.users.each do |user|
+      %li
+        - #passing a block of text to a link_to
+        = link_to user do
+          = gravatar_for user, :size => '25x25'
+          = user.name
+    %li
+
+      %label User
+      =text_field_tag(:newuser_id, nil, :placeholder => "User Id")
+      %input{:type => "button", :value => "Add"}
+      -# Use Javascript to update this list to add more than one
+
+    - # GroupMember.create!(:group_id => @group.id, :user_id => 1)
+
+
+
   .actions
     = f.submit

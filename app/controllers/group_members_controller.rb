@@ -25,7 +25,7 @@ class GroupMembersController < ApplicationController
   # GET /group_members/new.xml
   def new
     @group_member = GroupMember.new
-
+    @group = GroupMember.find(params[:group_id])
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @group_member }

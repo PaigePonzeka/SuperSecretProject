@@ -17,6 +17,7 @@
         = link_to user do
           = gravatar_for user, :size => '25x25'
           = user.name
+    %li= link_to 'Edit', edit_group_path(@group)
 
 
   %h2
