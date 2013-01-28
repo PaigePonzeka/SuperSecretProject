@@ -1,18 +1,24 @@
-%h1 Sign in
 
-= form_for(:session, :url => sessions_path) do |f|
-  
-  .field
-    =f.label :email
-    = f.text_field :email 
-  
-  .field
-    = f.label :password
-    = f.password_field :password
-  
-  .actions
-    = f.submit "Sign in"
 
-%p 
-  New user? 
-  =link_to "Sign up now!", signup_path
+= form_for(:session, :url => sessions_path, :html => { :class => "form-horizontal" }) do |f|
+  %h1 Sign in
+  .control-group
+    %label.control-label{:for => "inputEmail"} Email
+    .controls
+      = f.text_field :email, :placeholder => "Email"
+  .control-group
+    %label.control-label{:for => "inputPassword"} Password
+    .controls
+      = f.password_field :password, :placeholder => "Password"
+  .control-group
+    .controls
+      //%label.checkbox
+      //  %input{:type => "checkbox"}
+      //    Remember me
+      = f.submit "Sign in"
+
+      %p
+        New user?
+        =link_to "Sign up now!", signup_path
+
+
